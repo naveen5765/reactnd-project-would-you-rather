@@ -1,0 +1,57 @@
+.new-question-full-div {
+  background: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  padding: 50px;
+  width: 1000px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+h1.title {
+  margin-bottom: 30px;
+}
+
+h2.complete-question-title {
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h3.complete-question-title {
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+.question-option {
+  width: 100%;
+  margin-top: 10px;
+  padding: 3px;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+.question-option:focus {
+  outline-color: #ff9f1c;
+}
+
+.submit-btn {
+  font-size: 20px;
+  margin-top: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 4px 20px 5px 20px;
+  background-color: dodgerblue;
+  color: #fdfffc;
+}
+
+.submit-btn:hover {
+  border: none;
+  color: #fdfffc;
+  background-color: #011627;
+}

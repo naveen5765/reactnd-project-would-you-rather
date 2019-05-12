@@ -26,7 +26,7 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
     return saveQuestion({
       optionOneText,
       optionTwoText,
-      author: authedUser
+      author: authedUser.id
     })
       .then((question) => dispatch(addQuestion(question)))
   }
