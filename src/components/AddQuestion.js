@@ -50,8 +50,8 @@ class AddQuestion extends Component {
         return(
           <div>
             <br />
-            <h3 className='text-center'>Add a new question</h3>
             <br />
+            <h1 className='text-center'>Add a new question</h1>
             <div className="new-question-full-div">
               <form className='new-question-body' onSubmit={this.handleSubmit}>
                 <h1 className='title'> Would you rather... </h1>
