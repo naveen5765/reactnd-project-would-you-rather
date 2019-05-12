@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
 import AnsweredQuestion from './AnsweredQuestion'
 import UnansweredQuestion from './UnansweredQuestion'
+import '../css/Questions.css'
 
 class Login extends Component {
     state = {

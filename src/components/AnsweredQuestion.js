@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
-import { IoIosDoneAll } from "react-icons/io";
-import '../css/AnsweredQuestions.css'
+import PropTypes from 'prop-types'
+import { IoIosDoneAll } from "react-icons/io"
 
 class AnsweredQuestions extends Component {
 
@@ -27,7 +26,7 @@ class AnsweredQuestions extends Component {
     render() {
         const { authedUser, question} = this.props
         return (
-            <div className="answered-full-div text-white bg-dark">
+            <div className="question-full-div text-white bg-dark">
                 <div className="author">
                     {
                         authedUser.id === question.author
@@ -42,7 +41,7 @@ class AnsweredQuestions extends Component {
                     {
                         question.optionOne.votes.includes(authedUser.id)
                         ? 
-                        <div className='answered-div'>
+                        <div className='question-div'>
                             <div className='user-choice'>
                                 <div className='title-user-choice'>
                                     <IoIosDoneAll />
@@ -63,7 +62,7 @@ class AnsweredQuestions extends Component {
                             </div>
                         </div>
                         : 
-                        <div className='answered-div'> 
+                        <div className='question-div'> 
                             <div className='not-user-choice'>
                                 <p className='paragraph-text'>Would you rather {question.optionOne.text} </p>
                                 <div className="progress">

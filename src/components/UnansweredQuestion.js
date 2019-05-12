@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { handleVoteAnswer } from '../actions/questions'
-import '../css/UnansweredQuestions.css'
 
 class UnansweredQuestions extends Component {
 
@@ -37,14 +36,14 @@ class UnansweredQuestions extends Component {
     render() {
         const { question, authedUser } = this.props
         return (
-            <div className="answered-full-div text-white bg-dark">
+            <div className="question-full-div text-white bg-dark">
                 <div className="author">
                     {
                         authedUser.id === question.author
                         ? <div className="title"><h6>Asked by You</h6></div>
                         : <div className="title"><h6>Asked by {question.author}</h6></div>
                     }
-                    <img className="question-avatar" src={this.getAvatar(question.author)} alt="User Avatar" />
+                    <img className="unanswered-avatar" src={this.getAvatar(question.author)} alt="User Avatar" />
                 </div>
                 <form className="question-form" onSubmit={(event) => this.submitAnswer(event, question.id)}>
                     <h3> Would you rather ... ? </h3>
