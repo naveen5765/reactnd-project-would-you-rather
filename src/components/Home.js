@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
-import AnsweredQuestion from './AnsweredQuestions'
-import UnansweredQuestion from './UnansweredQuestions'
+import AnsweredQuestion from './AnsweredQuestion'
+import UnansweredQuestion from './UnansweredQuestion'
 
 class Login extends Component {
     state = {
@@ -47,8 +47,14 @@ class Login extends Component {
                 </nav>
                 {
                     this.state.showUnanswered 
-                    ? <UnansweredQuestion questions={sortedQuestions} users={users}/>
-                    : <AnsweredQuestion questions={sortedQuestions} />
+                    ? 
+                    sortedQuestions.map((question) => (
+                        <UnansweredQuestion key={question.id} question={question} users={users}/>
+                    ))
+                    : 
+                    sortedQuestions.map((question) => (
+                        <AnsweredQuestion key={question.id} question={question} />
+                    ))
                 }
             </div>
         )
