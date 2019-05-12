@@ -20,7 +20,7 @@ class AddQuestion extends Component {
         })
     }
     
-    handleClick = (e) => {
+    handleSubmit = (e) => {
       e.preventDefault()
   
       const { optionOne, optionTwo } = this.state
@@ -52,7 +52,7 @@ class AddQuestion extends Component {
             <br />
             <br />
             <h1 className='text-center'>Add a new question</h1>
-            <div className="new-question-full-div">
+            <div className="new-question-full-div bg-dark text-white">
               <form className='new-question-body' onSubmit={this.handleSubmit}>
                 <h1 className='title'> Would you rather... </h1>
                 <input 
@@ -73,8 +73,7 @@ class AddQuestion extends Component {
                 <button 
                   type='submit' 
                   className='submit-btn' 
-                  disabled={this.buttonStatus()} 
-                  onClick={this.handleClick}>Create</button>
+                  disabled={this.buttonStatus()}>Create</button>
               </form>
             </div>
           </div>
