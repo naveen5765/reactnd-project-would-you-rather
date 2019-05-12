@@ -55,3 +55,15 @@ h3.complete-question-title {
   color: #fdfffc;
   background-color: #011627;
 }
+
+.question-form {
+  margin-left: 225px;
+  padding-left: 25px;
+  border-left: 1px solid lightgrey;
+}
+
+.question-title {
+  font-size: 18px;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
