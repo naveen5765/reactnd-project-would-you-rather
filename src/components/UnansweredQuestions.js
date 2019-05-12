@@ -1,41 +1,80 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
+import { handleVoteAnswer } from '../actions/questions'
+import '../css/UnansweredQuestions.css'
 
 class UnansweredQuestions extends Component {
+
+    state = {
+        answer: ''
+    }
 
     getAvatar = (author) => {
         let user = this.props.users.filter((user) => user.id === author)[0]
         return user.avatarURL
     }
+
+    chooseAnswer = (event) => {
+        this.setState({
+            answer: event.target.value
+        })
+    }
+
+    submitAnswer = (event, id) => {
+        event.preventDefault()
+        this.props.submitAnswer(id, this.state.answer)
+    }
     
     render() {
-        const { questions } = this.props
+        const { questions, authedUser } = this.props
         return (
-            <div className='questions mx-auto'>
-                {questions.map((question) => (
-                <div key={question.id} className="card text-center mx-auto" style={{width: "55%", padding: "5px", margin: "15px"}} >
-                    <div className="card-body bg-dark text-white">
-                        <h5 className="card-title">Would you rather ?</h5>
-                        <div className="row">
-                            <div className="col-5 p-2 bg-primary">{question.optionOne.text}</div>
-                            <div className="col-2 mt-2">OR</div>
-                            <div className="col-5 p-2 bg-danger">{question.optionTwo.text}</div>
+            <Fragment>
+                {
+                questions.map((question) => (
+                    <div key={question.id} className="answered-full-div text-white bg-dark">
+                        <div className="author">
+                            {
+                                authedUser.id === question.author
+                                ? <div className="title"><h6>Asked by You</h6></div>
+                                : <div className="title"><h6>Asked by {question.author}</h6></div>
+                            }
+                            <img className="question-avatar" src={this.getAvatar(question.author)} alt="User Avatar" />
                         </div>
-                        <div className="d-flex justify-content-center">
-                            <img className="p-2" src={this.getAvatar(question.author)} alt="User Avatar" width="40" height="40" />
-                            <div className="p-2">{question.author}</div>
-                        </div>
+                        <form className="question-form" onSubmit={(event) => this.submitAnswer(event, question.id)}>
+                            <h3> Would you rather ... ? </h3>
+                            <br />
+                            <input type='radio' name='option' value='optionOne' id='optionOne' onChange={this.chooseAnswer} />
+                            <label className="question-choice ml-2" htmlFor='optionOne'>{question.optionOne.text}</label>
+                            <br />
+                            <input type='radio' name='option' value='optionTwo' id='optionTwo' onChange={this.chooseAnswer} /> 
+                            <label className="question-choice ml-2" htmlFor='optionTwo'>{question.optionTwo.text}</label>
+                            <br />
+                            <button type="submit" className="submit-btn mt-3">Submit</button>
+                        </form >
                     </div>
-                </div>
-                ))}
-            </div>
+                ))
+                }
+            </Fragment>
         )
     }
 }
 
 UnansweredQuestions.propTypes = {
-    questions: PropTypes.array,
-    users: PropTypes.array
+    questions: PropTypes.array
 }
 
-export default UnansweredQuestions
+const mapStateToProps = ({authedUser, users}) => {
+    return {
+        authedUser,
+        users: Object.values(users)
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        submitAnswer: (id, answer) => dispatch(handleVoteAnswer(id, answer))
+    }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnansweredQuestions)
