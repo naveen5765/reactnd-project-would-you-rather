@@ -48,7 +48,7 @@ class Login extends Component {
                 {
                     this.state.showUnanswered 
                     ? <UnansweredQuestion questions={sortedQuestions} users={users}/>
-                    : <AnsweredQuestion questions={sortedQuestions} users={users}/>
+                    : <AnsweredQuestion questions={sortedQuestions} />
                 }
             </div>
         )
