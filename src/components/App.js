@@ -1,11 +1,10 @@
 import React , {Component, Fragment} from 'react'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import _ from 'lodash'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.min'
 
 import { handleInitialData } from '../actions/shared'
 
