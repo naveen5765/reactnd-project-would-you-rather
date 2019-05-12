@@ -41,10 +41,10 @@ class Login extends Component {
                 <nav>
                     <ul className="pagination pagination-lg justify-content-center">
                         <li className={"page-item mar-20 " + (this.state.showUnanswered ? 'active' : '')} onClick={() => this.changePagination(true)}>
-                            <button className="page-link">Unanswered questions</button>
+                            <button className="page-link rounded">Unanswered questions</button>
                         </li>
                         <li className={"page-item mar-20 " + (this.state.showUnanswered ? '' : 'active')} onClick={() => this.changePagination(false)}>
-                            <button className="page-link">Answered questions</button>
+                            <button className="page-link rounded">Answered questions</button>
                         </li>
                     </ul>
                 </nav>

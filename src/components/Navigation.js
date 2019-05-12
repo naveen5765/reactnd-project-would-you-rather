@@ -41,7 +41,9 @@ class Navigation extends Component{
         return(
             <Fragment>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <Link to={this.getBrandpath(this.props.loggedIn)} className={`navbar-brand ${this.alignBrandToCenter(this.props.loggedIn)}`}>Would you rather?</Link>
+                    <Link to={this.getBrandpath(this.props.loggedIn)} className={`navbar-brand ${this.alignBrandToCenter(this.props.loggedIn)}`}>
+                        Would you rather... ?
+                    </Link>
                     {
                         this.props.loggedIn && 
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">

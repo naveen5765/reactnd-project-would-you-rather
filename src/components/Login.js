@@ -41,7 +41,7 @@ class Login extends Component {
         return (
             <div className="container h-100">
                 <div className="d-flex justify-content-center h-100 mar-t100">
-                    <div className="user_card">
+                    <div className="user_card bg-dark">
                         <div className="d-flex justify-content-center">
                             <div className="brand_logo_container">
                                 <img src={this.getUserAvatar()} className="brand_logo" alt="Select User" />
