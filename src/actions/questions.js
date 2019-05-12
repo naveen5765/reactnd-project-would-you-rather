@@ -1,8 +1,9 @@
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS= 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
-export const VOTE_ANSWER = 'VOTE_ANSWER'
+export const SAVE_ANSWER = 'SAVE_ANSWER'
 
 
 export function receiveQuestions (questions) {
@@ -15,7 +16,7 @@ export function receiveQuestions (questions) {
 function addQuestion (question) {
   return {
     type: ADD_QUESTION,
-    question,
+    question
   }
 }
 
@@ -23,20 +24,25 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
 
+    dispatch(showLoading())
     return saveQuestion({
       optionOneText,
       optionTwoText,
       author: authedUser.id
     })
-      .then((question) => dispatch(addQuestion(question)))
+    .then((question) => {
+      dispatch(addQuestion(question))
+      dispatch(hideLoading())
+    })
   }
 }
 
-function voteAnswer (questionId, option) {
+export function saveAnswer (authedUser, qid, answer) {
   return {
-    type: VOTE_ANSWER,
-    questionId,
-    option,
+    type: SAVE_ANSWER,
+    authedUser,
+    qid,
+    answer
   }
 }
 
@@ -44,11 +50,15 @@ export function handleVoteAnswer (questionId, answer) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
 
+    dispatch(showLoading())
     return saveQuestionAnswer({
-      authedUser,
-      questionId,
+      authedUser: authedUser.id,
+      qid: questionId,
       answer
     })
-      .then((answer) => dispatch(voteAnswer(answer)))
+    .then(() => {
+      dispatch(saveAnswer(authedUser.id, questionId, answer))
+      dispatch(hideLoading())
+    })
   }
 }

@@ -97,13 +97,13 @@ class AnsweredQuestions extends Component {
 }
 
 AnsweredQuestions.propTypes = {
-    questions: PropTypes.array,
-    users: PropTypes.array
+    questions: PropTypes.array
 }
 
-const mapStateToProps = ({authedUser}) => {
+const mapStateToProps = ({authedUser, users}) => {
     return {
-        authedUser
+        authedUser,
+        users: Object.values(users)
     }
 }
 
