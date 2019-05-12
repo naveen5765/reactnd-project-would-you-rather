@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.min'
 
 import { handleInitialData } from '../actions/shared'
 
