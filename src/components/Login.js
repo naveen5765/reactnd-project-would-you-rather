@@ -10,16 +10,18 @@ class Login extends Component {
         shouldRedirect: false
     }
 
-    handleChange = (user) => {
+    selectUser = (user) => {
         this.setState({
           selectedUser: user
         })
     }
 
-    setAuthedUser = (id) => {
+    login = (selectedUser) => {
+        if(selectedUser === null)
+            return
         let { users } = this.props
-        let user = users.filter((user) => user.id === id)
-        this.props.login(user[0]);
+        let user = users.filter((user) => user.id === selectedUser.id)[0]
+        this.props.login(user);
         this.setState({
             shouldRedirect: true
         })
@@ -68,7 +70,7 @@ class Login extends Component {
                                                         key={user.id}
                                                         className="dropdown-item" 
                                                         type="button" 
-                                                        onClick={() => this.handleChange(user)}>{user.name}</button>
+                                                        onClick={() => this.selectUser(user)}>{user.name}</button>
                                                 ))
                                             }
                                         </div>
@@ -81,7 +83,7 @@ class Login extends Component {
                                 type="button" 
                                 name="button" 
                                 className="btn login_btn"
-                                onClick={() => this.setAuthedUser(this.state.selectedUser.id)}>Login</button>
+                                onClick={() => this.login(this.state.selectedUser)}>Login</button>
                         </div>
                     </div>
                 </div>
