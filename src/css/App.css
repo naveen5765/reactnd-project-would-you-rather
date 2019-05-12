@@ -66,3 +66,6 @@ body {
 .mar-t100 {
   margin-top: 100px;
 }
+.bd-width2 {
+  border-width: 2px !important;
+}
