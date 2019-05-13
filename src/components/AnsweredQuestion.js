@@ -6,9 +6,8 @@ import NotSelectedOption from './Answered.NotSelectedOption'
 
 class AnsweredQuestions extends Component {
 
-    getAvatar = (author) => {
-        let user = this.props.users.filter((user) => user.id === author)[0]
-        return user.avatarURL
+    getAvatar = () => {
+        return this.props.authedUser.avatarURL
     }
 
     getProgress = (question, option) => {
@@ -34,7 +33,7 @@ class AnsweredQuestions extends Component {
                         ? <div className="title"><h3>Asked by You</h3></div>
                         : <div className="title"><h3>Asked by {question.author}</h3></div>
                     }
-                    <img className="answered-avatar" src={this.getAvatar(question.author)} alt="User Avatar" /> 
+                    <img className="answered-avatar" src={this.getAvatar()} alt="User Avatar" /> 
                 </div>
                 <div className="question-form">
                     <h3> Results </h3>
@@ -58,8 +57,6 @@ class AnsweredQuestions extends Component {
                             />
                         </div>
                         : 
-                        question.optionTwo.votes.includes(authedUser.id)
-                        ? 
                         <div className='question-div'> 
                             <NotSelectedOption
                                 optionText={question.optionOne.text}
@@ -69,23 +66,6 @@ class AnsweredQuestions extends Component {
                             />
                             <br />
                             <SelectedOption 
-                                optionText={question.optionTwo.text}
-                                optionVoteCount={question.optionTwo.votes.length}
-                                totalVoteCount={this.getTotalVotes(question)}
-                                progress={this.getProgress(question, "optionTwo")}
-                            />
-                        </div>
-                        :
-                        <div className='question-div'> 
-                            <h5 class="text-danger">You havent answered this question yet</h5>
-                            <NotSelectedOption
-                                optionText={question.optionOne.text}
-                                optionVoteCount={question.optionOne.votes.length}
-                                totalVoteCount={this.getTotalVotes(question)}
-                                progress={this.getProgress(question, "optionOne")}
-                            />
-                            <br />
-                            <NotSelectedOption 
                                 optionText={question.optionTwo.text}
                                 optionVoteCount={question.optionTwo.votes.length}
                                 totalVoteCount={this.getTotalVotes(question)}
@@ -103,10 +83,9 @@ AnsweredQuestions.propTypes = {
     questions: PropTypes.array
 }
 
-const mapStateToProps = ({authedUser, users}) => {
+const mapStateToProps = ({ authedUser }) => {
     return {
-        authedUser,
-        users: Object.values(users)
+        authedUser
     }
 }
 

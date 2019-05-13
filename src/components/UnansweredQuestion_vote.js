@@ -11,9 +11,8 @@ class UnansweredQuestions extends Component {
         showError: false
     }
 
-    getAvatar = (author) => {
-        let user = this.props.users.filter((user) => user.id === author)[0]
-        return user.avatarURL
+    getAvatar = () => {
+        return this.props.authedUser.avatarURL
     }
 
     chooseAnswer = (event) => {
@@ -30,10 +29,8 @@ class UnansweredQuestions extends Component {
                 showError: true
             })
             return
-        }   
-        this.props.submitAnswer(id, this.state.answer).then(()=>{
-            this.props.history.push(`/questions/${id}`)
-        })
+        }
+        this.props.submitAnswer(id, this.state.answer)
     }
     
     render() {
@@ -46,7 +43,7 @@ class UnansweredQuestions extends Component {
                         ? <div className="title"><h6>Asked by You</h6></div>
                         : <div className="title"><h6>Asked by {question.author}</h6></div>
                     }
-                    <img className="unanswered-avatar" src={this.getAvatar(question.author)} alt="User Avatar" />
+                    <img className="unanswered-avatar" src={this.getAvatar()} alt="User Avatar" />
                 </div>
                 <form className="question-form" onSubmit={(event) => this.submitAnswer(event, question.id)}>
                     <h3> Would you rather ... ? </h3>
@@ -70,13 +67,12 @@ class UnansweredQuestions extends Component {
 }
 
 UnansweredQuestions.propTypes = {
-    questions: PropTypes.array
+    question: PropTypes.object
 }
 
-const mapStateToProps = ({authedUser, users}) => {
+const mapStateToProps = ({ authedUser }) => {
     return {
-        authedUser,
-        users: Object.values(users)
+        authedUser
     }
 }
 

@@ -59,7 +59,6 @@ export function handleVoteAnswer (questionId, answer) {
     .then(() => {
       dispatch(saveAnswer(authedUser.id, questionId, answer))
       dispatch(hideLoading())
-      return Promise.resolve()
     })
   }
 }
