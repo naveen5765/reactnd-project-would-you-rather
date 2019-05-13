@@ -52,7 +52,7 @@ class Login extends Component {
                     (
                         sortedQuestions.length === 0 
                         ?
-                        <div class="text-center">
+                        <div className="text-center">
                             <h3>You have answered all the questions.</h3>
                             <h3>You can create a new question or wait for other users to create one</h3>
                         </div>
