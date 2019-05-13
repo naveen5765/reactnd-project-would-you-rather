@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from "prop-types"
 import { IoIosDoneAll } from "react-icons/io"
 
 const SelectedOption = function(props){
