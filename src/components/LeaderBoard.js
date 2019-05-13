@@ -33,7 +33,7 @@ class LeaderBoard extends Component {
               {
                 sortedUsers.map((user) => {
                   return (
-                    <div key={user.id} className={'row mb-2 rounded border ' + (authedUser.id === user.id ? 'border-success bd-width2' : 'border-dark')}>
+                    <div key={user.id} className={'row mb-2 rounded border text-white border-white ' + (authedUser.id === user.id ? 'bd-width2 bg-success' : 'bg-dark')}>
                         <div className="col align-items-center">
                           <img src={user.avatarURL} alt="User Avatar" width="60" height="60" className="rounded mr-3" />
                           {user.name}
