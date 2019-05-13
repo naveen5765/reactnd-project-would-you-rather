@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from 'react-redux'
-import { Link, Redirect} from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { IoMdLogOut } from 'react-icons/io'
 import { removeAuthedUser } from '../actions/authedUser'
 
