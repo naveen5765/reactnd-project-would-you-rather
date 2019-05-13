@@ -52,10 +52,10 @@ class Navigation extends Component{
                                 <Link to="/home" className="nav-link">Home</Link>
                             </li>
                             <li className="nav-item" onClick={this.activateLink} ref="NavigateAddQuestion">
-                                <Link to="/addQuestion" className="nav-link">Add Question</Link>
+                                <Link to="/add" className="nav-link">Add Question</Link>
                             </li>
                             <li className="nav-item" onClick={this.activateLink} ref="NavigateLeaderBoard">
-                                <Link to="/leaderBoard" className="nav-link">Leader Board</Link>
+                                <Link to="/leaderboard" className="nav-link">Leader Board</Link>
                             </li>
                         </ul>
                         <div className="navbar-nav">
