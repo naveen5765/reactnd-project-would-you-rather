@@ -8,7 +8,8 @@ class AddQuestion extends Component {
     state = {
         optionOne: '',
         optionTwo: '',
-        redirectoToHome: false
+        redirectoToHome: false,
+        showError: false
     }
 
     handleChange = (e) => {
@@ -16,15 +17,22 @@ class AddQuestion extends Component {
         let inputNumber = e.target.id
     
         this.setState({
-          [inputNumber]: targetValue
+          [inputNumber]: targetValue,
+          showError: false
         })
     }
     
     handleSubmit = (e) => {
       e.preventDefault()
   
-      const { optionOne, optionTwo } = this.state
+      let { optionOne, optionTwo } = this.state
 
+      optionOne.trim() === '' || optionTwo.trim() === ''
+      ? 
+      this.setState({
+        showError: true
+      })
+      :
       this.props.dispatch(handleAddQuestion(optionOne, optionTwo))
         .then(() => {
           this.setState({
@@ -39,7 +47,7 @@ class AddQuestion extends Component {
 
     render(){
         let { isLoggedIn } = this.props
-        const { optionOne, optionTwo, redirectoToHome } = this.state
+        const { optionOne, optionTwo, redirectoToHome, showError } = this.state
 
         if(!isLoggedIn){
             return <Redirect to={ '/' } />
@@ -55,6 +63,11 @@ class AddQuestion extends Component {
             <div className="new-question-full-div bg-dark text-white">
               <form className='new-question-body' onSubmit={this.handleSubmit}>
                 <h1 className='title'> Would you rather... </h1>
+                {
+                    showError
+                    ? <h5 className="text-danger">Please enter the Options before creating</h5>
+                    : null
+                }
                 <input 
                   id="optionOne"
                   placeholder='Enter Option One Here' 
