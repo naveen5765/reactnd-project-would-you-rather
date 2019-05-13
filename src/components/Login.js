@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { Redirect } from 'react-router-dom'
+import { removeAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
+
+    constructor(props){
+        super(props)
+        if(props.authedUser !== null)
+            props.removeAuthedUser();
+    }
 
     state = {
         'selectedUser': null,
@@ -78,7 +85,7 @@ class Login extends Component {
                                 </div>
                             </form>
                         </div>
-                        <div className="d-flex justify-content-center mt-3 login_container">
+                        <div className="d-flex justify-content-center m-3 login_container">
                             <button 
                                 type="button" 
                                 name="button" 
@@ -92,15 +99,17 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, authedUser }) => {
     return {
       users: Object.values(users),
+      authedUser,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        login: (user) => dispatch(setAuthedUser(user))
+        login: (user) => dispatch(setAuthedUser(user)),
+        removeAuthedUser: () => dispatch(removeAuthedUser())
     }
 }
 
