@@ -58,6 +58,8 @@ class AnsweredQuestions extends Component {
                             />
                         </div>
                         : 
+                        question.optionTwo.votes.includes(authedUser.id)
+                        ? 
                         <div className='question-div'> 
                             <NotSelectedOption
                                 optionText={question.optionOne.text}
@@ -67,6 +69,23 @@ class AnsweredQuestions extends Component {
                             />
                             <br />
                             <SelectedOption 
+                                optionText={question.optionTwo.text}
+                                optionVoteCount={question.optionTwo.votes.length}
+                                totalVoteCount={this.getTotalVotes(question)}
+                                progress={this.getProgress(question, "optionTwo")}
+                            />
+                        </div>
+                        :
+                        <div className='question-div'> 
+                            <h5 class="text-danger">You havent answered this question yet</h5>
+                            <NotSelectedOption
+                                optionText={question.optionOne.text}
+                                optionVoteCount={question.optionOne.votes.length}
+                                totalVoteCount={this.getTotalVotes(question)}
+                                progress={this.getProgress(question, "optionOne")}
+                            />
+                            <br />
+                            <NotSelectedOption 
                                 optionText={question.optionTwo.text}
                                 optionVoteCount={question.optionTwo.votes.length}
                                 totalVoteCount={this.getTotalVotes(question)}
