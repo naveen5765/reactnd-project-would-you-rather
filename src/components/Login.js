@@ -43,7 +43,8 @@ class Login extends Component {
 
     render() {
         if(this.state.shouldRedirect){
-            return <Redirect push to={ '/home' } />
+            let { redirectUrl } = (this.props.location.state) ? this.props.location.state : {redirectUrl: '/home'}
+            return <Redirect push to={ redirectUrl } />
         }
 
         let { users } = this.props

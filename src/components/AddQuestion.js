@@ -50,7 +50,7 @@ class AddQuestion extends Component {
         const { optionOne, optionTwo, redirectoToHome, showError } = this.state
 
         if(!isLoggedIn){
-            return <Redirect to={ '/' } />
+          return <Redirect to={{pathname: '/', state: {redirectUrl: this.props.location.pathname}}} />
         }else if(redirectoToHome){
           return <Redirect push to={ '/home' } />
         }

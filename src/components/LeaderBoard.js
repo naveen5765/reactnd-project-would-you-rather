@@ -7,7 +7,7 @@ class LeaderBoard extends Component {
       let { isLoggedIn, authedUser, users } = this.props
 
       if(!isLoggedIn){
-          return <Redirect to={ '/' } />
+          return <Redirect to={{pathname: '/', state: {redirectUrl: this.props.location.pathname}}} />
       }
 
       let sortedUsers = Object.values(users).sort((a,b) => (Object.keys(b.answers).length + b.questions.length) - (Object.keys(a.answers).length + a.questions.length))
