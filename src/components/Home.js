@@ -49,9 +49,19 @@ class Login extends Component {
                 {
                     this.state.showUnanswered 
                     ? 
-                    sortedQuestions.map((question) => (
-                        <UnansweredQuestion key={question.id} question={question} users={users}/>
-                    ))
+                    (
+                        sortedQuestions.length === 0 
+                        ?
+                        <div class="text-center">
+                            <h3>You have answered all the questions.</h3>
+                            <h3>You can create a new question or wait for other users to create one</h3>
+                        </div>
+                        :
+                        sortedQuestions.map((question) => (
+                            <UnansweredQuestion key={question.id} question={question} users={users}/>
+                        ))
+                    )
+                    
                     : 
                     sortedQuestions.map((question) => (
                         <AnsweredQuestion key={question.id} question={question} />
