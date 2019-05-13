@@ -15,6 +15,7 @@ import Login from './Login'
 import Home from './Home'
 import LeaderBoard from './LeaderBoard'
 import AddQuestion from './AddQuestion'
+import Question from './Question'
 
 class App extends Component {
   componentDidMount() {
@@ -32,8 +33,9 @@ class App extends Component {
               <Navigation />
               <Route path='/' exact component={Login} />
               <Route path='/home' component={Home} />
-              <Route path='/addQuestion' component={AddQuestion} />
-              <Route path='/leaderBoard' component={LeaderBoard} />
+              <Route path='/add' component={AddQuestion} />
+              <Route path='/leaderboard' component={LeaderBoard} />
+              <Route path='/questions/:question_id' component={Question} />
             </div>}
         </Fragment>
       </Router>

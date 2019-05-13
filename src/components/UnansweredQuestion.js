@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { handleVoteAnswer } from '../actions/questions'
+import { withRouter } from 'react-router-dom'
 
 class UnansweredQuestions extends Component {
 
@@ -30,7 +31,9 @@ class UnansweredQuestions extends Component {
             })
             return
         }   
-        this.props.submitAnswer(id, this.state.answer)
+        this.props.submitAnswer(id, this.state.answer).then(()=>{
+            this.props.history.push(`/questions/${id}`)
+        })
     }
     
     render() {
@@ -83,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 } 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UnansweredQuestions)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UnansweredQuestions))
